@@ -40,3 +40,40 @@ from dotenv import load_dotenv
 load_dotenv()
 SECRET_KEY = os.getenv('SECRET_KEY', default='django-insecure-)si+fpno3#)=7__vx-4%ni^&n1wvaz9bju1e+s8*i!e9qt!@f)')
 ```
+
+## Vytvoření superuživatele
+```bash
+python manage.py createsuperuser
+```
+
+## Aplikace
+### Vytvoření
+```bash
+python manage.py startapp <název_aplikace>
+```
+
+### Struktura aplikace
+- `viewer` - složka aplikace
+  - `migrations` - složka obsahující migrační skripty
+  - `__init__.py` - je tu zde jen proto, aby daná složka byla package
+  - `admin.py` - nastavení administrační stránky
+  - `apps.py` - nastavení aplikace - nebudeme upravovat
+  - `models.py` - zde bude definice modelů (databáze)
+  - `tests.py` - zde budou testy
+  - `views.py` - zde budou views (funkcionalita)
+
+  ### Registrace aplikace
+Do souboru `settings.py` musíme novou aplikaci zaregistrovat do seznamu 
+`INSTALLED_APPS`:
+```python
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+
+    'viewer',
+]
+```
