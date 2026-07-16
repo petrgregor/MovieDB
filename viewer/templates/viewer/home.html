@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Movie database
+{% endblock %}
+
+{% block content %}
+    <h1>Welcome to our movie database.</h1>
+    <p>Movie database.</p>
+    <h2>Movie: {{ movie|upper }}</h2>
+    <p>Released: {{ released }}</p>
+    Komentáře:
+    <ul>
+        {% for comment in comments %}
+            <li>{{ comment }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
