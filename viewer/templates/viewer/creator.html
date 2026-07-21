@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ creator.name }} {{ creator.surname }}
+{% endblock title %}
+
+{% block content %}
+    <h1>{{ creator.name }} {{ creator.surname }}</h1>
+    <div>Datum narození: {{ creator.date_of_birth }}</div>
+    <div>
+        Hrál ve filmech:
+        <ul>
+            {% for movie in creator.acting.all %}
+                <li>{{ movie.title_cz }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div>
+        Režíroval filmy:
+        <ul>
+            {% for movie in creator.directing.all %}
+                <li>{{ movie.title_cz }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% if creator.date_of_death %}
+        <div>Datum úmrtí: {{ creator.date_of_death }}</div>
+    {% endif %}
+    <div>{{ creator.biography }}</div>
+{% endblock content %}
