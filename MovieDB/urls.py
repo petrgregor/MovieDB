@@ -22,6 +22,11 @@ from viewer.views import *
 urlpatterns = [
     path('', home, name='home'),
     path('admin/', admin.site.urls),
+
+    path('genres/', GenreListView.as_view(), name='genres'),
+    path('genre/create/', GenreCreateView.as_view(), name='genre_create'),
+    path('genre/update/<int:pk>', GenreUpdateView.as_view(), name='genre_update'),
+    path('genre/delete/<int:pk>', GenreDeleteView.as_view(), name='genre_delete'),
     #path('movies/', movies, name='movies'),
     path('movies/', MovieListView.as_view(), name='movies'),
     path('creators/', CreatorListView.as_view(), name='creators'),

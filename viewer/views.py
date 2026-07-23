@@ -1,7 +1,10 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, \
+    DeleteView
 
-from viewer.models import Movie, Creator
+from viewer.forms import GenreForm
+from viewer.models import Movie, Creator, Genre
 
 
 def home(request):
@@ -13,6 +16,31 @@ def home(request):
                 "Šlo to."]
     context = {'movie': movie, 'released': released, 'comments': comments}
     return render(request, 'viewer/home.html', context)
+
+
+class GenreListView(ListView):
+    model = Genre
+    context_object_name = 'genres'
+    template_name = 'viewer/genres.html'
+
+
+class GenreCreateView(CreateView):
+    form_class = GenreForm
+    template_name = 'viewer/form.html'
+    success_url = reverse_lazy('genres')
+
+
+class GenreUpdateView(UpdateView):
+    model = Genre
+    form_class = GenreForm
+    template_name = 'viewer/form.html'
+    success_url = reverse_lazy('genres')
+
+
+class GenreDeleteView(DeleteView):
+    model = Genre
+    template_name = 'viewer/confirm_delete.html'
+    success_url = reverse_lazy('genres')
 
 
 # Seznam filmů pomocí funkce

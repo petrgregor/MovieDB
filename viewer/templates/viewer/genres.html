@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Seznam žánrů
+{% endblock title %}
+
+{% block content %}
+    <h1>Seznam žánrů:</h1>
+    <ul>
+        {% for genre in genres %}
+            <li>{{ genre.name }}
+                <a href="{% url 'genre_update' genre.id %}">✏️</a>
+                <a href="{% url 'genre_delete' genre.id %}">❌</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'genre_create' %}">Vytvoř nový</a>
+{% endblock content %}
