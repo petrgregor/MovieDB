@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ genre.name }}
+{% endblock title %}
+
+{% block content %}
+    <h1>{{ genre.name }}</h1>
+    <ul>
+        {% for movie in genre.movies.all %}
+            <li>{{ movie }}</li>
+        {% empty %}
+            <li>V databázi není žádný film daného žánru</li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

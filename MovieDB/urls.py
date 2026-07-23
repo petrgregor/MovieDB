@@ -23,6 +23,7 @@ urlpatterns = [
     path('', home, name='home'),
     path('admin/', admin.site.urls),
 
+    path('genre/<int:pk>/', GenreDetailView.as_view(), name='genre'),
     path('genres/', GenreListView.as_view(), name='genres'),
     path('genre/create/', GenreCreateView.as_view(), name='genre_create'),
     path('genre/update/<int:pk>', GenreUpdateView.as_view(), name='genre_update'),

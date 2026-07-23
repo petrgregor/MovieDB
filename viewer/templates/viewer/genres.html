@@ -8,7 +8,8 @@
     <h1>Seznam žánrů:</h1>
     <ul>
         {% for genre in genres %}
-            <li>{{ genre.name }}
+            <li><a href="{% url 'genre' genre.id %}">{{ genre.name }}</a>
+                ({{ genre.movies.count }})
                 <a href="{% url 'genre_update' genre.id %}">✏️</a>
                 <a href="{% url 'genre_delete' genre.id %}">❌</a>
             </li>

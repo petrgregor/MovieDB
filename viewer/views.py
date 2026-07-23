@@ -24,6 +24,12 @@ class GenreListView(ListView):
     template_name = 'viewer/genres.html'
 
 
+class GenreDetailView(DetailView):
+    model = Genre
+    context_object_name = 'genre'
+    template_name = 'viewer/genre.html'
+
+
 class GenreCreateView(CreateView):
     form_class = GenreForm
     template_name = 'viewer/form.html'
