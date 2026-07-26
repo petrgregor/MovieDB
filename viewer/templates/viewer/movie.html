@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ movie.title_cz }}
+{% endblock title %}
+
+{% block content %}
+    <h1>CZ: {{ movie.title_cz }}</h1>
+    <h2>Originál: {{ movie.title_orig }}</h2>
+    <div>Rok vydání: {{ movie.year }}</div>
+
+    <div>
+        Režie:
+        <ul>
+            {% for director in movie.directors.all %}
+                <li>{{ director }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div>
+        Hrají:
+        <ul>
+            {% for actor in movie.actors.all %}
+                <li>{{ actor }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div>
+        Obsah:
+        <div>{{ movie.description }}</div>
+    </div>
+{% endblock content %}

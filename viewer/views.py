@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, \
     DeleteView
 
-from viewer.forms import GenreForm
+from viewer.forms import GenreForm, CreatorForm, MovieForm
 from viewer.models import Movie, Creator, Genre
 
 
@@ -63,6 +63,31 @@ class MovieListView(ListView):
     template_name = 'viewer/movies.html'
 
 
+class MovieDetailView(DetailView):
+    model = Movie
+    context_object_name = 'movie'
+    template_name = 'viewer/movie.html'
+
+
+class MovieCreateView(CreateView):
+    form_class = MovieForm
+    template_name = 'viewer/form.html'
+    success_url = reverse_lazy('movies')
+
+
+class MovieUpdateView(UpdateView):
+    model = Movie
+    form_class = CreatorForm
+    template_name = 'viewer/form.html'
+    success_url = reverse_lazy('movies')
+
+
+class MovieDeleteView(DeleteView):
+    model = Movie
+    template_name = 'viewer/confirm_delete.html'
+    success_url = reverse_lazy('movies')
+
+
 class CreatorListView(ListView):
     model = Creator
     context_object_name = 'creators'
@@ -73,3 +98,22 @@ class CreatorDetailView(DetailView):
     model = Creator
     context_object_name = 'creator'
     template_name = 'viewer/creator.html'
+
+
+class CreatorCreateView(CreateView):
+    form_class = CreatorForm
+    template_name = 'viewer/form.html'
+    success_url = reverse_lazy('creators')
+
+
+class CreatorUpdateView(UpdateView):
+    model = Creator
+    form_class = CreatorForm
+    template_name = 'viewer/form.html'
+    success_url = reverse_lazy('creators')
+
+
+class CreatorDeleteView(DeleteView):
+    model = Creator
+    template_name = 'viewer/confirm_delete.html'
+    success_url = reverse_lazy('creators')

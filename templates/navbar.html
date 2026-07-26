@@ -9,12 +9,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                Home
+                <a class="nav-link" href="{% url 'home' %}">Home</a>
+                <a class="nav-link" href="{% url 'movies' %}">Filmy</a>
+                <a class="nav-link" href="{% url 'creators' %}">Tvůrci</a>
+                <a class="nav-link" href="{% url 'genres' %}">Žánry</a>
             </div>
-            <div class="navbar-nav">
-                <a href="{% url 'genres' %}">Žánry</a>
-            </div>
-
         </div>
     </div>
 </nav>

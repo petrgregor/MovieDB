@@ -1,14 +1,19 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Seznam filmů
+    Seznam Filmů
 {% endblock title %}
 
 {% block content %}
-    <h1>Seznam filmů:</h1>
+    <h1>Seznam Filmů:</h1>
     <ul>
         {% for movie in movies %}
-            <li>{{ movie.title_cz }} ({{ movie.year }})</li>
+            <li><a href="{% url 'movie' movie.id %}">{{ movie.title_cz }}</a>
+                ({{ movie.year }})
+                <a href="{% url 'movie_update' movie.id %}">✏️</a>
+                <a href="{% url 'movie_delete' movie.id %}">❌</a>
+            </li>
         {% endfor %}
     </ul>
+    <a href="{% url 'movie_create' %}">Vytvoř nový</a>
 {% endblock content %}

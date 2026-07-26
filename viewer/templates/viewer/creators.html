@@ -8,9 +8,11 @@
     <h1>Seznam tvůrců:</h1>
     <ul>
         {% for creator in creators %}
-            <li>
-                <a href="{% url 'creator' creator.id %}">{{ creator.name }} {{ creator.surname }}</a>
+            <li><a href="{% url 'creator' creator.id %}">{{ creator.name }} {{ creator.surname }}</a>
+                <a href="{% url 'creator_update' creator.id %}">✏️</a>
+                <a href="{% url 'creator_delete' creator.id %}">❌</a>
             </li>
         {% endfor %}
     </ul>
+    <a href="{% url 'creator_create' %}">Vytvoř nového tvůrce</a>
 {% endblock content %}
