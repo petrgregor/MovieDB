@@ -1,3 +1,5 @@
+from django.contrib.auth.mixins import LoginRequiredMixin, \
+    PermissionRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, \
@@ -71,21 +73,24 @@ class MovieDetailView(DetailView):
 
 class MovieCreateView(CreateView):
     form_class = MovieForm
-    template_name = 'viewer/form.html'
+    template_name = 'form.html'
     success_url = reverse_lazy('movies')
 
 
-class MovieUpdateView(UpdateView):
+class MovieUpdateView(PermissionRequiredMixin, UpdateView):
     model = Movie
     form_class = CreatorForm
-    template_name = 'viewer/form.html'
+    template_name = 'form.html'
     success_url = reverse_lazy('movies')
+    permission_required = 'viewer.change_movie'
 
 
-class MovieDeleteView(DeleteView):
+#LoginRequiredMixin,   # uživatel musí být přihlášený
+class MovieDeleteView(PermissionRequiredMixin, DeleteView):
     model = Movie
     template_name = 'viewer/confirm_delete.html'
     success_url = reverse_lazy('movies')
+    permission_required = 'viewer.delete_movie'
 
 
 class CreatorListView(ListView):
@@ -102,14 +107,14 @@ class CreatorDetailView(DetailView):
 
 class CreatorCreateView(CreateView):
     form_class = CreatorForm
-    template_name = 'viewer/form.html'
+    template_name = 'form.html'
     success_url = reverse_lazy('creators')
 
 
 class CreatorUpdateView(UpdateView):
     model = Creator
     form_class = CreatorForm
-    template_name = 'viewer/form.html'
+    template_name = 'form.html'
     success_url = reverse_lazy('creators')
 
 
