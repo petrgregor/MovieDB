@@ -14,6 +14,10 @@ class CreatorForm(ModelForm):
         model = Creator
         fields = '__all__'
 
+    def clean_name(self):
+        initial = self.cleaned_data['name']
+        return initial.capitalize()
+
 
 class MovieForm(ModelForm):
     class Meta:
